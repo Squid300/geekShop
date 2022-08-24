@@ -48,9 +48,9 @@ db.once('open', async () => {
 
   const users = await User.insertMany([
     {
-      userName: 'UserName',
-      firstName: 'Bob',
-      lastName: 'Test',
+      userName: 'Squid300',
+      firstName: 'Ben',
+      lastName: 'A',
       email: 'test@gmail.com',
       password: 'superSecretPassword'
     },

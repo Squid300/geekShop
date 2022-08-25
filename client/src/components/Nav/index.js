@@ -11,34 +11,34 @@ function Navi() {
   };
 
   return (
-    <nav className={`${menuResponsive ? "topnav" : "topnav responsive"}`} id="topnav">
+    <nav className={`${menuResponsive ? "topnav responsive" : "topnav"}`} id="topnav">
       <div id="icon-logo">
-        <a className="hamburger-menu nav-item" onClick={handleMenu}>
-          <span className="material-symbols-outlined" id="hamburger-icon">
+        <div className="hamburger-menu nav-item" onClick={handleMenu}>
+          <span className="material-symbols-outlined icon" id="hamburger-icon">
             menu
           </span>
-        </a>
-        <a href="#" className="nav-item" id="logo">Geek Shop</a>
+        </div>
+        <Link to="/" className="nav-item" id="logo">Geek Shop</Link>
       </div>
       <div className="dropdown">
         <div className="dropbtn">Categories</div>
         <div className="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <Link to="/">Link 1</Link>
+          <Link to="/">Link 2</Link>
+          <Link to="/">Link 3</Link>
         </div>
       </div>
       <div className="dropdown-responsive">
         <div className="dropbtn-responsive">Categories</div>
-        <a href="#" className="dropdown-content-responsive">Link 1</a>
-        <a href="#" className="dropdown-content-responsive">Link 2</a>
-        <a href="#" className="dropdown-content-responsive">Link 3</a>
+        <Link to="/" className="dropdown-content-responsive">Link 1</Link>
+        <Link to="/" className="dropdown-content-responsive">Link 2</Link>
+        <Link to="/" className="dropdown-content-responsive">Link 3</Link>
       </div>
-      <a href="#contact" className="nav-item">Signup</a>
-      <a href="#about" className="nav-item">Login</a>
-      <a className="cart-link">
-          <span className="material-symbols-outlined" id="cart-icon">shopping_cart</span>
-      </a>
+      <Link to="/Signup" className="nav-item">Signup</Link>
+      <Link to="/Login" className="nav-item">Login</Link>
+      <Link to="/" className="cart-link">
+          <span className="material-symbols-outlined icon" id="cart-icon">shopping_cart</span>
+      </Link>
     </nav>
   );
 

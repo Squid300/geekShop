@@ -6,7 +6,11 @@
   'opsz' 48
 }
 
-#hamburger-icon, #cart-icon {
+#hamburger-icon {
+  cursor: pointer;
+}
+
+span.icon {
   font-size: 36px;
 }
 
@@ -133,7 +137,7 @@
   .topnav > *:first-child {
     width: 100vw;
   }
-  .topnav a.hamburger-menu {
+  .topnav div.hamburger-menu {
     display: flex;
     align-items: center;
   }
@@ -171,18 +175,18 @@
     text-decoration: none;
     font-size: 25px;
   }
-  .topnav.responsive .dropdown-responsive {
+  .dropdown-responsive {
     color: var(--text-dark);
     font-family: var(--a-typeface);
     font-weight: var(--a-font);
     width: 100%;
     text-align: left;
   }
-  .topnav.responsive .dropbtn-responsive {
+  .dropbtn-responsive {
     border-bottom: 2px solid var(--border-dark);
     padding: 10px;
   }
-  .topnav.responsive .dropdown-content-responsive {
+  .dropdown-content-responsive {
     color: var(--text-mid);
     font-family: var(--a-typeface);
     font-weight: var(--a-font);
@@ -190,10 +194,10 @@
     padding: 10px 10px 10px 20px;
     border-bottom: 2px solid var(--border-light);
   }
-  .topnav.responsive .dropdown-content-responsive:hover {
+  .dropdown-content-responsive:hover {
     background-color: var(--a-hover);
   }
-  .topnav.responsive a.hamburger-menu {
+  .topnav.responsive div.hamburger-menu {
     display: flex;
     align-items: center;
   }

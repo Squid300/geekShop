@@ -11,6 +11,7 @@ function Carousel(props) {
           let id = "carousel-slide" + item.id;
           let prev;
           let next;
+          let url = "url(" + item.url + ")";
           if (item.id === 1) {
             prev = "#carousel-slide" + 4;
           } else {
@@ -24,7 +25,7 @@ function Carousel(props) {
             next = "#carousel-slide" + nextId;
           }
           return (
-            <li id={id} key={item.name} tabIndex="0" className="carousel-slide" style={{backgroundColor: item.url}}>
+            <li id={id} key={item.name} tabIndex="0" className="carousel-slide" style={{backgroundImage: url}}>
               <div className="carousel-snapper">
                 <a href={prev} className="carousel-prev">Go to last slide</a>
                 <a href={next} className="carousel-next">Go to next slide</a>
@@ -39,6 +40,7 @@ function Carousel(props) {
   return (
     <div className="container-carousel">
       <section className="carousel" aria-label="Gallery">
+        <div className="bestsellers-text">Bestsellers</div>
         {renderSlides(props)}
       </section>
     </div>

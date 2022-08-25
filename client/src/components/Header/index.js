@@ -5,7 +5,7 @@ import './style.css';
 function Header() {
 
   return (
-    <section className="browse-header">
+    <section className="container-header">
       Shop by Category
     </section>
   )

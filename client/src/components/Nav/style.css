@@ -11,7 +11,7 @@
 }
 
 span.icon {
-  font-size: 36px;
+  font-size: 2.5rem;
 }
 
 .cart-link {
@@ -23,14 +23,14 @@ span.icon {
   font-weight: var(--a-font);
   text-align: center;
   text-decoration: none;
-  font-size: 25px;
-  padding: 10px;
+  font-size: 2rem;
+  padding: 0.5rem;
 }
 
 #logo {
   color: var(--text-dark);
   font-family: var(--logo-typeface);
-  font-size: 44px;
+  font-size: 2.75rem
 }
 
 .topnav {
@@ -47,8 +47,8 @@ span.icon {
   font-weight: var(--a-font);
   text-align: center;
   text-decoration: none;
-  font-size: 25px;
-  padding: 10px;
+  font-size: 1.5rem;
+  padding: 0.5rem;
 }
 
 .topnav .drop-btn {
@@ -59,8 +59,8 @@ span.icon {
   text-decoration: none;
   border: none;
   background-color: var(--nav-bg-dark);
-  font-size: 25px;
-  padding: 10px;
+  font-size: 1.5rem;
+  padding: 0.5rem;
 }
 
 .topnav a:hover {
@@ -110,7 +110,7 @@ span.icon {
   color: var(--text-mid);
   font-family: var(--a-typeface);
   font-weight: var(--a-font);
-  font-size: 25px;
+  font-size: 1.5rem;
   background-color: var(--nav-bg-light);
   padding: 12px 16px;
   text-decoration: none;
@@ -173,7 +173,7 @@ span.icon {
   .topnav.responsive .dropdown-responsive, .dropdown-content-responsive, .dropbtn-responsive {
     display: block;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 1.5rem;
   }
   .dropdown-responsive {
     color: var(--text-dark);
@@ -184,14 +184,14 @@ span.icon {
   }
   .dropbtn-responsive {
     border-bottom: 2px solid var(--border-dark);
-    padding: 10px;
+    padding: 0.5rem;
   }
   .dropdown-content-responsive {
     color: var(--text-mid);
     font-family: var(--a-typeface);
     font-weight: var(--a-font);
     background-color: var(--nav-bg-light);
-    padding: 10px 10px 10px 20px;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
     border-bottom: 2px solid var(--border-light);
   }
   .dropdown-content-responsive:hover {

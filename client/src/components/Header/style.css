@@ -4,4 +4,15 @@
   margin: 0 auto;
   padding: 1rem;
   font-family: 'Bangers', sans-serif;
+  font-size: 2rem;
+  color: var(--text-dark);
+  background-color: var(--nav-bg-dark);
+  border: 5px solid var(--border-dark);
+  border-top: none;
+  padding: 0.5rem;
+}
+
+.header {
+  background-color: var(--nav-bg-light);
+  padding: 0.5rem;
 }

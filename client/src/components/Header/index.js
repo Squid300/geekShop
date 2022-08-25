@@ -6,7 +6,9 @@ function Header() {
 
   return (
     <section className="container-header">
-      Shop by Category
+      <div className="header">
+        Shop by Category
+      </div>
     </section>
   )
 

@@ -42,20 +42,6 @@ function Navi() {
               <span className="material-symbols-outlined icon" id="cart-icon">shopping_cart</span>
           </Link>
         </nav>
-
-        // <ul className="flex-row">
-        //   <li className="mx-1">
-        //     <Link to="/orderHistory">
-        //       Order History
-        //     </Link>
-        //   </li>
-        //   <li className="mx-1">
-        //     {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-        //     <a href="/" onClick={() => Auth.logout()}>
-        //       Logout
-        //     </a>
-        //   </li>
-        // </ul>
       );
     } else {
       return (

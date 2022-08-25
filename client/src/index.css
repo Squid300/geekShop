@@ -3,16 +3,19 @@
 @import 'material-symbols/outlined.css';
 
 :root {
+  /* Text */
   --text-dark: #644C68;
   --text-mid: #8C5994;
+  --logo-typeface: 'Bangers', sans-serif;
+  --a-typeface: 'Catamaran', sans-serif;
+  --a-font: 700;
+  --a-hover: #f7e3cd;
+  /* Containers */
   --border-dark: #644C68;
   --border-light: #644C68;
   --nav-bg-dark: #8068FF;
   --nav-bg-light: #9B8EDE;
-  --logo-typeface: 'Bangers', sans-serif;
-  --a-typeface: 'Catamaran', sans-serif;
-  --a-font: 700;
-  --a-hover: #d4cdf7;
+  --border-thick: 5px solid var(--border-dark);
 }
 
 /* Resets the box size of every element */
@@ -31,6 +34,7 @@ body {
   min-height: 100%;
   line-height: 1;
   font-family: sans-serif;
+  background-color: #f7e3cd;
 }
 
 h1, h2, h3, h4, h5, h6 {

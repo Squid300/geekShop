@@ -19,9 +19,9 @@ const Home = () => {
     <div className="container">
       <Carousel images={images}/>
       <Header />
-      <Category category="test1"/>
-      <Category category="test2"/>
-      <Category category="test3"/>
+      <Category category="test1" url="/" image="http://placecorgi.com/600/250"/>
+      <Category category="test2" url="/" image="http://placecorgi.com/600/250"/>
+      <Category category="test3" url="/" image="http://placecorgi.com/600/250"/>
       {/* <CategoryMenu />
       <ProductList />
       <Cart /> */}

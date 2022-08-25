@@ -13,7 +13,7 @@ function Navi() {
   return (
     <nav className={`${menuResponsive ? "topnav responsive" : "topnav"}`} id="topnav">
       <div id="icon-logo">
-        <div className="hamburger-menu nav-item" onClick={handleMenu}>
+        <div className="hamburger-menu nav-item" role="button" onClick={handleMenu}>
           <span className="material-symbols-outlined icon" id="hamburger-icon">
             menu
           </span>

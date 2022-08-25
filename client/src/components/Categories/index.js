@@ -6,7 +6,14 @@ function Category(props) {
 
   return (
     <section className="container-category">
-      <div>test {props.category}</div>
+      <img src={props.image}></img>
+      <div className="header-category">
+        <div className="header-category-inner">
+          <Link to={props.url} className="header-text">
+            {props.category}
+          </Link>
+        </div>
+      </div>
     </section>
   )
 

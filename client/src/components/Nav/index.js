@@ -23,20 +23,20 @@ function Navi() {
       <div className="dropdown">
         <div className="dropbtn">Categories</div>
         <div className="dropdown-content">
-          <Link to="/">Link 1</Link>
-          <Link to="/">Link 2</Link>
-          <Link to="/">Link 3</Link>
+          <Link to="/">Category 1</Link>
+          <Link to="/">Category 2</Link>
+          <Link to="/">Category 3</Link>
         </div>
       </div>
       <div className="dropdown-responsive">
         <div className="dropbtn-responsive">Categories</div>
-        <Link to="/" className="dropdown-content-responsive">Link 1</Link>
-        <Link to="/" className="dropdown-content-responsive">Link 2</Link>
-        <Link to="/" className="dropdown-content-responsive">Link 3</Link>
+        <Link to="/" className="dropdown-content-responsive">Category 1</Link>
+        <Link to="/" className="dropdown-content-responsive">Category 2</Link>
+        <Link to="/" className="dropdown-content-responsive">Category 3</Link>
       </div>
       <Link to="/Signup" className="nav-item">Signup</Link>
       <Link to="/Login" className="nav-item">Login</Link>
-      <Link to="/" className="cart-link">
+      <Link to="/cart" className="cart-link">
           <span className="material-symbols-outlined icon" id="cart-icon">shopping_cart</span>
       </Link>
     </nav>

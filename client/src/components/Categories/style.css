@@ -3,8 +3,7 @@
   max-width: 37.5rem;
   margin: 0 auto;
   padding: 0;
-  border: var(--border-thick);
-  /* border-top: none; */
+  border-top: var(--border-thick);;
   background-color: var(--nav-bg-light);
   font-family: var(--logo-typeface);
   color: var(--text-mid);

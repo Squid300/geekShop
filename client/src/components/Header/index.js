@@ -2,12 +2,12 @@ import React, { useState }  from "react";
 import { Link } from "react-router-dom";
 import './style.css';
 
-function Header() {
+function Header(props) {
 
   return (
     <section className="container-header">
       <div className="header">
-        Shop by Category
+        {props.title}
       </div>
     </section>
   )

@@ -12,19 +12,15 @@ const images = [
   {"name":"img3", "url": "http://placecorgi.com/600/602", "id":3},
   {"name":"img4", "url": "http://placecorgi.com/600/603", "id":4}
 ];
-// const images = ["img1", "img2", "img3", "img4"];
 
 const Home = () => {
   return (
     <div className="container">
       <Carousel images={images}/>
-      <Header />
-      <Category category="Category 1" url="/" image="http://placecorgi.com/600/250"/>
-      <Category category="Category 2" url="/" image="http://placecorgi.com/600/251"/>
-      <Category category="Category 3" url="/" image="http://placecorgi.com/600/252"/>
-      {/* <CategoryMenu />
-      <ProductList />
-      <Cart /> */}
+      <Header title="Shop by Category" />
+      <Category title="Category 1" url="/" image="http://placecorgi.com/600/250"/>
+      <Category title="Category 2" url="/" image="http://placecorgi.com/600/251"/>
+      <Category title="Category 3" url="/" image="http://placecorgi.com/600/252"/>
     </div>
   );
 };

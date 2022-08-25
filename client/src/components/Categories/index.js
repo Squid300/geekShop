@@ -10,7 +10,7 @@ function Category(props) {
       <div className="header-category">
         <div className="header-category-inner">
           <Link to={props.url} className="header-text">
-            {props.category}
+            {props.title}
           </Link>
         </div>
       </div>

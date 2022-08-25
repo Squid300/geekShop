@@ -31,12 +31,37 @@ db.once('open', async () => {
       category: categories[1]._id,
       price: 31.00,
       quantity: 10
+    },
+    {
+      name: 'Black Lotus - Beta Edition',
+      description: 'Adds 3 mana of any single color of your choice to your mana pool, then is discarded. Tapping this artifact can be played as an interrupt.',
+      image: 'blackLotus.jpg',
+      category: categories[2]._id,
+      price: 10000,
+      quantity: 1
     }
   ]);
 
   console.log('products seeded');
 
   await User.deleteMany();
+
+  const users = await User.insertMany([
+    {
+      userName: 'Squid300',
+      firstName: 'Ben',
+      lastName: 'A',
+      email: 'test@gmail.com',
+      password: 'superSecretPassword'
+    },
+    {
+      userName: 'Mendelism',
+      firstName: 'Haley',
+      lastName: 'G',
+      email: 'test1@gmail.com',
+      password: 'evenSupererSecretPassword'
+    }
+  ])
 
   console.log('users seeded');
 

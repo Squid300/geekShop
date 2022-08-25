@@ -11,7 +11,7 @@ import './style.css';
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
-const Cart = () => {
+const CartX = () => {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
@@ -60,21 +60,8 @@ const Cart = () => {
     });
   }
 
-  if (!state.cartOpen) {
-    return (
-      <div className="cart-closed" onClick={toggleCart}>
-        <span role="img" aria-label="trash">
-          🛒
-        </span>
-      </div>
-    );
-  }
-
   return (
     <div className="cart">
-      <div className="close" onClick={toggleCart}>
-        [close]
-      </div>
       <h2>Shopping Cart</h2>
       {state.cart.length ? (
         <div>
@@ -104,4 +91,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartX;

@@ -13,10 +13,12 @@ import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Nav from './components/Nav';
+import Navi from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
+import Cart from './pages/Cart';
+import 'material-symbols';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -37,13 +39,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
           <StoreProvider>
-            <Nav />
+            <Navi />
             <Routes>
               <Route 
                 path="/" 
@@ -56,6 +59,10 @@ function App() {
               <Route 
                 path="/signup" 
                 element={<Signup />} 
+              />
+              <Route 
+                path="/cart" 
+                element={<Cart />} 
               />
               <Route 
                 path="/success" 

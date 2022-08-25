@@ -1,58 +1,46 @@
-import React from "react";
+import React, { useState }  from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import './style.css';
 
-function Nav() {
+function Navi() {
 
-  function showNavigation() {
-    if (Auth.loggedIn()) {
-      return (
-        <ul className="flex-row">
-          <li className="mx-1">
-            <Link to="/orderHistory">
-              Order History
-            </Link>
-          </li>
-          <li className="mx-1">
-            {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-            <a href="/" onClick={() => Auth.logout()}>
-              Logout
-            </a>
-          </li>
-        </ul>
-      );
-    } else {
-      return (
-        <ul className="flex-row">
-          <li className="mx-1">
-            <Link to="/signup">
-              Signup
-            </Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/login">
-              Login
-            </Link>
-          </li>
-        </ul>
-      );
-    }
-  }
+  const [menuResponsive, setMenuResponsive] = useState(false);
+  const handleMenu = () => {
+    setMenuResponsive(!menuResponsive);
+  };
 
   return (
-    <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
-          <span role="img" aria-label="shopping bag">🛍️</span>
-          -Shop-Shop
-        </Link>
-      </h1>
-
-      <nav>
-        {showNavigation()}
-      </nav>
-    </header>
+    <nav className={`${menuResponsive ? "topnav" : "topnav responsive"}`} id="topnav">
+      <div id="icon-logo">
+        <a className="hamburger-menu nav-item" onClick={handleMenu}>
+          <span className="material-symbols-outlined" id="hamburger-icon">
+            menu
+          </span>
+        </a>
+        <a href="#" className="nav-item" id="logo">Geek Shop</a>
+      </div>
+      <div className="dropdown">
+        <div className="dropbtn">Categories</div>
+        <div className="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+      <div className="dropdown-responsive">
+        <div className="dropbtn-responsive">Categories</div>
+        <a href="#" className="dropdown-content-responsive">Link 1</a>
+        <a href="#" className="dropdown-content-responsive">Link 2</a>
+        <a href="#" className="dropdown-content-responsive">Link 3</a>
+      </div>
+      <a href="#contact" className="nav-item">Signup</a>
+      <a href="#about" className="nav-item">Login</a>
+      <a className="cart-link">
+          <span className="material-symbols-outlined" id="cart-icon">shopping_cart</span>
+      </a>
+    </nav>
   );
-}
 
-export default Nav;
+}
+export default Navi;

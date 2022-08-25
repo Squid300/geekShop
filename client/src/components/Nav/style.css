@@ -137,9 +137,9 @@
     display: flex;
     align-items: center;
   }
-  .topnav #logo {
+  /* .topnav #logo {
     font-size: 36px;
-  }
+  } */
   .topnav #icon-logo {
     display: flex;
     border-bottom: none;

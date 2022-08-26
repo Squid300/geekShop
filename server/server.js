@@ -3,6 +3,8 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 
+const { pay, generateToken } = require('../../geekShop/server/config/braintree');
+
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -26,6 +28,17 @@ if (process.env.NODE_ENV === 'production') {
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+app.get('/client', async ( req, res ) => {
+  await res.send(generateToken(req.body.userId));
+});
+
+app.post('/pay', ( req, res ) => {
+  const clientNonce = req.body.payment_method_nonce;
+  const price = req.body.price;
+  pay( price, clientNonce );
+  res.redirect('/');
 });
 
 const startApolloServer = async (typeDefs, resolvers) => {

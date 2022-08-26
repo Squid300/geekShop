@@ -5,9 +5,9 @@ db.once('open', async () => {
   await Category.deleteMany();
 
   const categories = await Category.insertMany([
-    { name: 'Warhammer' },
-    { name: 'Vintage Video Games' },
-    { name: 'Trading Cards' }
+    { name: 'Warhammer', image: 'http://placecorgi.com/600/250' },
+    { name: 'Vintage Video Games', image: 'http://placecorgi.com/600/251' },
+    { name: 'Trading Cards', image: 'http://placecorgi.com/600/252' }
   ]);
 
   console.log('categories seeded');
@@ -22,7 +22,8 @@ db.once('open', async () => {
       image: 'mortarion.jpg',
       category: categories[0]._id,
       price: 160,
-      quantity: 3
+      quantity: 3,
+      sold: 6
     },
     {
       name: 'Blades of Steel',
@@ -30,7 +31,8 @@ db.once('open', async () => {
       image: 'bladesOfSteel.jpg',
       category: categories[1]._id,
       price: 31.00,
-      quantity: 10
+      quantity: 10,
+      sold: 20
     },
     {
       name: 'Black Lotus - Beta Edition',
@@ -38,7 +40,17 @@ db.once('open', async () => {
       image: 'blackLotus.jpg',
       category: categories[2]._id,
       price: 10000,
-      quantity: 1
+      quantity: 1,
+      sold: 0
+    },
+    {
+      name: 'Warhammer Age of Sigmar: Dominion',
+      description: 'If you’re looking to plunge headfirst into the new edition of Warhammer Age of Sigmar, look no further than this glorious boxed set. Includes two powerful armies, pitting the reforged Stormcast Eternals against the emerging threat of the Kruleboyz – cunning and deadly orruks native to the swamps of Ghur.',
+      image: 'dominionSet.jpg',
+      category: categories[0]._id,
+      price: 108.77,
+      quantity: 18,
+      sold: 15
     }
   ]);
 

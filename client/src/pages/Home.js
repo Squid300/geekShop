@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "../components/Carousel";
-import Category from "../components/Categories";
+import CategoryHeader from "../components/Categories";
 import Header from "../components/Header";
 import { useQuery } from '@apollo/client';
 import { QUERY_CATEGORIES } from "../utils/queries";
@@ -20,11 +20,8 @@ const images = [
 const Home = () => {
 
   const { loading, error, data } = useQuery(QUERY_CATEGORIES);
-
   if (loading) console.log(loading);
   if (error) console.log(error);
-  console.log(data);
-  // console.log(Object.keys(data.categories))
 
   return (
     <div className="container">
@@ -32,7 +29,7 @@ const Home = () => {
       <Header title="Shop by Category" />
       {data?.categories.map((current, index) => {
         return (
-          <Category title={data.categories[index].name} url="/" image={data.categories[index].image}/>
+          <CategoryHeader title={data.categories[index].name} url={"/categories/" + data.categories[index].name} image={data.categories[index].image}/>
         )
       })}
     </div>

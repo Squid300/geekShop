@@ -2,7 +2,7 @@ import React, { useState }  from "react";
 import { Link } from "react-router-dom";
 import './style.css';
 
-function Category(props) {
+function CategoryHeader(props) {
 
   return (
     <section className="container-category">
@@ -19,4 +19,4 @@ function Category(props) {
 
 }
 
-export default Category;
+export default CategoryHeader;

@@ -5,6 +5,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     image: String
+    products: [Product]
   }
 
   type Product {

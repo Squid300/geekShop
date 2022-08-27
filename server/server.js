@@ -3,7 +3,7 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 
-const { pay, generateToken } = require('../../geekShop/server/config/braintree');
+const { pay, generateToken } = require('./config/braintree.js');
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-app.get('/client', async ( req, res ) => {
+app.get('/token', async ( req, res ) => {
   await res.send(generateToken(req.body.userId));
 });
 

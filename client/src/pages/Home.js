@@ -29,7 +29,7 @@ const Home = () => {
       <Header title="Shop by Category" />
       {data?.categories.map((current, index) => {
         return (
-          <CategoryHeader title={data.categories[index].name} url={"/categories/" + data.categories[index].name} image={data.categories[index].image}/>
+          <CategoryHeader title={data.categories[index].name} url={"/categories/" + data.categories[index].name + "/" + data.categories[index]._id} image={data.categories[index].image}/>
         )
       })}
     </div>

@@ -14,7 +14,7 @@ function ProductItem(item) {
     _id,
     price,
     quantity
-  } = item;
+  } = item.item;
 
   const { cart } = state
 
@@ -42,11 +42,8 @@ function ProductItem(item) {
   return (
     <div className="card px-1 py-1">
       <Link to={`/products/${_id}`}>
-        <img
-          alt={name}
-          src={`/images/${image}`}
-        />
         <p>{name}</p>
+        <img src={image}></img>
       </Link>
       <div>
         <div>{quantity} {pluralize("item", quantity)} in stock</div>

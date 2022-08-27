@@ -78,7 +78,7 @@ function App() {
                 element={<Detail />} 
               />
               <Route 
-                path="/categories/:name" 
+                path="/categories/:name/:id" 
                 element={<Category />} 
               />
               <Route

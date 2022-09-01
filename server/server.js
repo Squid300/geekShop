@@ -1,9 +1,8 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+var braintree = require('braintree');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
-
-const { pay, generateToken } = require('./config/braintree.js');
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -14,6 +13,12 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+});
+const gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: "nj4dckhx7c733nd2",
+  publicKey: "dbmf6bpswtqdfsys",
+  privateKey: "1b373744c30bc32c71e7405a2b7f332d",
 });
 
 app.use(express.urlencoded({ extended: false }));
@@ -31,13 +36,32 @@ app.get('/', (req, res) => {
 });
 
 app.get('/token', async ( req, res ) => {
-  await res.send(generateToken(req.body.userId));
+  gateway.clientToken.generate({}) 
+  .then( response => {
+    console.log(response.clientToken);
+    const token = response.clientToken
+    res.json(token);
+  });
 });
 
 app.post('/pay', ( req, res ) => {
   const clientNonce = req.body.payment_method_nonce;
   const price = req.body.price;
-  pay( price, clientNonce );
+  gateway.transaction
+      .sale({
+          amount: price,
+          paymentMethodNonce: clientNonce,
+          options: {
+              submitForSettlement: true,
+          },
+      })
+      .then((result) => {
+          if (result.success) {
+              console.log( result.transaction.id );
+          }else {
+              console.error( result.message );
+          }
+      });
   res.redirect('/');
 });
 

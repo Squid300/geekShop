@@ -7,7 +7,9 @@ import { idbPromise } from "../../utils/helpers";
 import { ShoppingCartContext } from "../../context/cartContext";
 import './style.css'
 
-function ProductDetail(props) {
+const LOCAL_STORAGE_KEY = 'geekShop.cart'
+
+function ProductItem(props) {
   const [state, dispatch] = useStoreContext();
 
   const {
@@ -67,4 +69,4 @@ function ProductDetail(props) {
   );
 }
 
-export default ProductDetail;
+export default ProductItem;

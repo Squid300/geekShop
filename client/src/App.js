@@ -20,6 +20,7 @@ import OrderHistory from './pages/OrderHistory';
 import Cart from './pages/Cart';
 import Category from './pages/Category';
 import 'material-symbols';
+import { ShoppingCartProvider } from './context/cartContext';
 
 const httpLink = createHttpLink({
   uri: '/graphql',

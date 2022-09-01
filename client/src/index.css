@@ -16,6 +16,7 @@
   --nav-bg-dark: #8068FF;
   --nav-bg-light: #9B8EDE;
   --border-thick: 5px solid var(--border-dark);
+  --max-width: 37.5rem;
 }
 
 /* Resets the box size of every element */
@@ -60,7 +61,8 @@ button {
 
 .container {
   position: relative;
-  max-width: 37.5rem;
+  max-width: var(--max-width);
+  height: 100%;
   margin: 0 auto;
   padding: 0;
   border: var(--border-thick);

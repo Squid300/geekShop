@@ -25,7 +25,7 @@ function Carousel(props) {
             next = "#carousel-slide" + nextId;
           }
           return (
-            <li id={id} key={item.name} tabIndex="0" className="carousel-slide" style={{backgroundImage: url}}>
+            <li id={id} key={item.name} tabIndex="0" className="carousel-slide" style={{backgroundImage: url, backgroundSize: "100%"}}>
               <div className="carousel-snapper">
                 <a href={prev} className="carousel-prev">Go to last slide</a>
                 <a href={next} className="carousel-next">Go to next slide</a>

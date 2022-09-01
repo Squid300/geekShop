@@ -1,14 +1,20 @@
 import React, { useState }  from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import { useQuery } from '@apollo/client';
+import { QUERY_CATEGORIES } from '../../utils/queries'
 import './style.css';
 
 function Navi() {
-
+ 
   const [menuResponsive, setMenuResponsive] = useState(false);
   const handleMenu = () => {
     setMenuResponsive(!menuResponsive);
   };
+
+  const { loading, error, data } = useQuery(QUERY_CATEGORIES);
+  if (loading) console.log(loading);
+  if (error) console.log(error);
 
   function showNav() {
     if (Auth.loggedIn()) {
@@ -25,16 +31,20 @@ function Navi() {
           <div className="dropdown">
             <div className="dropbtn">Categories</div>
             <div className="dropdown-content">
-              <Link to="/">Category 1</Link>
-              <Link to="/">Category 2</Link>
-              <Link to="/">Category 3</Link>
+            {data?.categories.map((current, index) => {
+              return (
+                <Link to={"/categories/" + data.categories[index].name + "/" + data.categories[index]._id}>{data.categories[index].name}</Link>
+              )
+            })}
             </div>
           </div>
           <div className="dropdown-responsive">
             <div className="dropbtn-responsive">Categories</div>
-            <Link to="/" className="dropdown-content-responsive">Category 1</Link>
-            <Link to="/" className="dropdown-content-responsive">Category 2</Link>
-            <Link to="/" className="dropdown-content-responsive">Category 3</Link>
+            {data?.categories.map((current, index) => {
+              return (
+                <Link to={"/categories/" + data.categories[index].name + "/" + data.categories[index]._id} className="dropdown-content-responsive">{data.categories[index].name}</Link>
+              )
+            })}
           </div>
           <Link to="/orderHistory" className="nav-item">Orders</Link>
           <a href="/" className="nav-item" onClick={() => Auth.logout()}>Logout</a>
@@ -57,16 +67,20 @@ function Navi() {
           <div className="dropdown">
             <div className="dropbtn">Categories</div>
             <div className="dropdown-content">
-              <Link to="/">Category 1</Link>
-              <Link to="/">Category 2</Link>
-              <Link to="/">Category 3</Link>
+            {data?.categories.map((current, index) => {
+              return (
+                <Link to={"/categories/" + data.categories[index].name + "/" + data.categories[index]._id}>{data.categories[index].name}</Link>
+              )
+            })}
             </div>
           </div>
           <div className="dropdown-responsive">
             <div className="dropbtn-responsive">Categories</div>
-            <Link to="/" className="dropdown-content-responsive">Category 1</Link>
-            <Link to="/" className="dropdown-content-responsive">Category 2</Link>
-            <Link to="/" className="dropdown-content-responsive">Category 3</Link>
+            {data?.categories.map((current, index) => {
+              return (
+                <Link to={"/categories/" + data.categories[index].name + "/" + data.categories[index]._id} className="dropdown-content-responsive">{data.categories[index].name}</Link>
+              )
+            })}
           </div>
           <Link to="/Signup" className="nav-item">Signup</Link>
           <Link to="/Login" className="nav-item">Login</Link>

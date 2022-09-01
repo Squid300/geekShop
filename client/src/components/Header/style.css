@@ -1,6 +1,6 @@
 .container-header {
   background-color: aqua;
-  max-width: 37.5rem;
+  max-width: var(--max-width);
   margin: 0 auto;
   font-family: 'Bangers', sans-serif;
   font-size: 2rem;

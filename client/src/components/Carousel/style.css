@@ -1,7 +1,7 @@
 .container-carousel {
   position: relative;
   background-color: var(--border-dark);
-  max-width: 37.5rem;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 0;
   font-family: var(--a-typeface);

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_CATEGORIES } from '../utils/queries';
+import { QUERY_ALL_PRODUCTS, QUERY_PRODUCTS_BY_CATEGORY } from '../utils/queries';
 import Carousel from '../components/Carousel';
 import Header from '../components/Header';
 import CategoryHeader from '../components/Categories';
+import ProductItem from '../components/ProductItem';
+import { ShoppingCartContext } from '../context/cartContext';
 
 const images = [
   {"name":"img1", "url": "http://placecorgi.com/600/600", "id":1},
@@ -15,30 +17,30 @@ const images = [
 
 function Category() {
 
-  const { name } = useParams();
-  const [currentCat, setCurrentCat ] = useState({});
-  const { loading, error, data } = useQuery(QUERY_CATEGORIES);
-  if (loading) console.log(loading);
-  if (error) console.log(error);
+  const { name, id } = useParams();
+  const { loading, error, data } = useQuery(QUERY_PRODUCTS_BY_CATEGORY, {
+    variables: {category: id}
+  });
+  const [prods, setProds] = useState([]);
 
   useEffect(() => {
-    setCurrentCat(data?.categories.find((cat) => cat.name === name));
-  }, [data?.categories, name, currentCat])
-
-  console.log(currentCat)
+    if (data) {
+      setProds(data.products)
+    }
+  }, [data])
 
   return (
     <div className="container">
       <Carousel images={images}/>
-      <Header title="Shop by Category" />
-      {data?.categories.map((current, index) => {
+      <Header title={name} />
+      {loading ? "Loading..." : ""}
+      {prods.map((current, index) => {
         return (
-          <CategoryHeader title={data.categories[index].name} url="/" image={data.categories[index].image}/>
+          <ProductItem key={prods[index]._id} item={prods[index]} />
         )
       })}
     </div>
   )
-
 }
 
 export default Category;

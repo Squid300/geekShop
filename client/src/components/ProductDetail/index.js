@@ -1,117 +1,72 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import ProductDetail from '../components/ProductDetail'
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { pluralize } from "../../utils/helpers"
+import { useStoreContext } from "../../utils/GlobalState";
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
+import { idbPromise } from "../../utils/helpers";
+import { ShoppingCartContext } from "../../context/cartContext";
+import './style.css'
 
-import Cart from '../components/Cart';
-import { useStoreContext } from '../utils/GlobalState';
-import {
-  REMOVE_FROM_CART,
-  UPDATE_CART_QUANTITY,
-  ADD_TO_CART,
-  UPDATE_PRODUCTS,
-} from '../utils/actions';
-import { QUERY_PRODUCTS } from '../utils/queries';
-import { idbPromise } from '../utils/helpers';
-import spinner from '../assets/spinner.gif';
+const LOCAL_STORAGE_KEY = 'geekShop.cart'
 
-function Detail() {
+function ProductItem(props) {
   const [state, dispatch] = useStoreContext();
-  const { id } = useParams();
 
-  const [currentProduct, setCurrentProduct] = useState({});
+  const {
+    image,
+    name,
+    _id,
+    price,
+    quantity
+  } = props.item;
 
-  const { loading, data } = useQuery(QUERY_PRODUCTS);
-
-  const { products, cart } = state;
-
-  useEffect(() => {
-    // already in global store
-    if (products.length) {
-      setCurrentProduct(products.find((product) => product._id === id));
-    }
-    // retrieved from server
-    else if (data) {
-      dispatch({
-        type: UPDATE_PRODUCTS,
-        products: data.products,
-      });
-
-      data.products.forEach((product) => {
-        idbPromise('products', 'put', product);
-      });
-    }
-    // get cache from idb
-    else if (!loading) {
-      idbPromise('products', 'get').then((indexedProducts) => {
-        dispatch({
-          type: UPDATE_PRODUCTS,
-          products: indexedProducts,
-        });
-      });
-    }
-  }, [products, data, loading, dispatch, id]);
+  const { cart } = state
 
   const addToCart = () => {
-    const itemInCart = cart.find((cartItem) => cartItem._id === id);
+    const itemInCart = cart.find((cartItem) => cartItem._id === _id)
     if (itemInCart) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
-        _id: id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+        _id: _id,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
       });
+
       idbPromise('cart', 'put', {
         ...itemInCart,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
       });
     } else {
       dispatch({
         type: ADD_TO_CART,
-        product: { ...currentProduct, purchaseQuantity: 1 },
+        product: { ...props.item, purchaseQuantity: 1 }
       });
-      idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
+
+      idbPromise('cart', 'put', { ...props.item, purchaseQuantity: 1 });
     }
-  };
-
-  const removeFromCart = () => {
-    dispatch({
-      type: REMOVE_FROM_CART,
-      _id: currentProduct._id,
-    });
-
-    idbPromise('cart', 'delete', { ...currentProduct });
-  };
+  }
 
   return (
     <>
-      {currentProduct && cart ? (
-        <div className="container my-1">
-          <Link to="/">← Back to Products</Link>
-
-          <h2>{currentProduct.name}</h2>
-
-          <p>{currentProduct.description}</p>
-
-          <p>
-            <strong>Price:</strong>${currentProduct.price}{' '}
-            <button onClick={addToCart}>Add to Cart</button>
-            <button
-              disabled={!cart.find((p) => p._id === currentProduct._id)}
-              onClick={removeFromCart}
-            >
-              Remove from Cart
-            </button>
-          </p>
-
-          <img
-            src={`/images/${currentProduct.image}`}
-            alt={currentProduct.name}
-          />
+    <div className="item-container">
+      <div className="item-name">
+        <div className="item-name-inner">
+          <Link to={`/products/${_id}`} className="item-text">
+            <div>{name}</div>
+            <div>Learn more ...</div>
+          </Link>
         </div>
-      ) : null}
-      {loading ? <img src={spinner} alt="loading" /> : null}
+      </div>
+      <img src={image} alt="Product"></img>
+    </div>
+    <div className="item-info">
+      <div className="price-text">${price}</div>
+      <div>{quantity} {pluralize("item", quantity)} in stock</div>
+    </div>
+    <div className="add-to-cart">
+      <button key={_id} onClick={addToCart} data-id={_id}>Add to cart</button>
+    </div>
     </>
   );
 }
 
-export default ProductDetail;
+export default ProductItem;

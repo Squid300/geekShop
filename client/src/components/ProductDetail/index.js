@@ -7,6 +7,8 @@ import { idbPromise } from "../../utils/helpers";
 import { ShoppingCartContext } from "../../context/cartContext";
 import './style.css'
 
+const LOCAL_STORAGE_KEY = 'geekShop.cart'
+
 function ProductDetail(props) {
   const [state, dispatch] = useStoreContext();
 
@@ -15,7 +17,8 @@ function ProductDetail(props) {
     name,
     _id,
     price,
-    quantity
+    quantity,
+    description
   } = props.item;
 
   const { cart } = state
@@ -46,22 +49,26 @@ function ProductDetail(props) {
   return (
     <>
     <div className="item-container">
-      <div className="item-name">
-        <div className="item-name-inner">
-          <Link to={`/products/${_id}`} className="item-text">
-            <div>{name}</div>
-            <div>Learn more ...</div>
-          </Link>
+      <div className="item-container">
+        <div className="item-name">
+          <div className="item-name-inner">
+            <Link to={`/products/${_id}`} className="item-text">
+              <div>{name}</div>
+            </Link>
+          </div>
         </div>
+        <img src={image} alt="Product"></img>
       </div>
-      <img src={image} alt="Product"></img>
-    </div>
-    <div className="item-info">
-      <div className="price-text">${price}</div>
-      <div>{quantity} {pluralize("item", quantity)} in stock</div>
-    </div>
-    <div className="add-to-cart">
-      <button key={_id} onClick={addToCart} data-id={_id}>Add to cart</button>
+      <div className="item-info">
+        <div className="price-text">${price}</div>
+        <div>{quantity} {pluralize("item", quantity)} in stock</div>
+      </div>
+      <div className="item-info">
+        {description}
+      </div>
+      <div className="add-to-cart">
+        <button key={_id} onClick={addToCart} data-id={_id}>Add to cart</button>
+      </div>
     </div>
     </>
   );

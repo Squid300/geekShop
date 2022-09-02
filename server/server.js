@@ -36,11 +36,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/token', async ( req, res ) => {
-  gateway.clientToken.generate({}) 
+  await gateway.clientToken.generate({}) 
   .then( response => {
     console.log(response.clientToken);
     const token = response.clientToken
-    res.json(token);
+    res.send({token});
   });
 });
 

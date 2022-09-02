@@ -7,7 +7,7 @@ const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
   typeDefs,
@@ -36,11 +36,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/token', async ( req, res ) => {
-  gateway.clientToken.generate({}) 
+  await gateway.clientToken.generate({}) 
   .then( response => {
     console.log(response.clientToken);
     const token = response.clientToken
-    res.send(token);
+    res.send({token});
   });
 });
 

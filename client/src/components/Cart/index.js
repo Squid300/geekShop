@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_CHECKOUT } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
+import { idbPromise, getToken } from '../../utils/helpers';
 import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
@@ -26,7 +26,7 @@ const CartX = () => {
     const token = await getToken();
     if (state) {
       const initailizeBraintree = () => dropin.create({
-        authorization: token,
+        authorization: token.token,
         container: '#braintree-drop-in-div',
       }, function ( error, instance ) {
         if( error ) {
@@ -72,14 +72,6 @@ const CartX = () => {
     return sum.toFixed(2);
   }
 
-  async function getToken() {
-    const token = await fetch('/token', {
-      method: 'GET',
-    })
-    console.log(token.token)
-    return token.token;
-  }
-
   function submitCheckout() {
     const productIds = [];
 
@@ -114,13 +106,17 @@ const CartX = () => {
                     if ( error ) {
                       console.error(error);
                     } else {
-                      const paymentMethodNonce = payload.nonce;
-                      console.log("nonce", payload.nonce);
+                      const nonce = payload.nonce
+                      const price = calculateTotal();
+                      console.log("nonce", nonce);
+                      console.log("price", price)
+                      const data = {"payment_method_nonce": nonce, "price": price}
+                      const body = JSON.stringify(data);
 
                       fetch('/pay', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json'},
-                        body: {payment_mthod_nonce: paymentMethodNonce, price: calculateTotal()}
+                        body: body
                       })
                     }
                   })

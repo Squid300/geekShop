@@ -54,3 +54,10 @@ export function idbPromise(storeName, method, object) {
     };
   });
 }
+
+export async function getToken() {
+  const data = await fetch('/token')
+  const token = await data.json();
+  console.log(token);
+  return token;
+}
